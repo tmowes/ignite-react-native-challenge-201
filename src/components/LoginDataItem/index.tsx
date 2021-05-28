@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 import {
   Container,
@@ -7,43 +7,36 @@ import {
   Title,
   Email,
   ShowPasswordButton,
-  Icon
-} from './styles';
+  Icon,
+} from './styles'
 
 interface Props {
-  title: string;
-  email: string;
-  password: string;
+  title: string
+  email: string
+  password: string
 }
 
-export function LoginDataItem({
-  title,
-  email,
-  password
-}: Props) {
-  const [passIsVisible, setPassIsVisible] = useState(false);
+export function LoginDataItem({ title, email, password }: Props) {
+  const [passIsVisible, setPassIsVisible] = useState(false)
 
   function handleTogglePassIsVisible() {
-    setPassIsVisible(!passIsVisible);
+    setPassIsVisible(!passIsVisible)
   }
 
   return (
     <Container>
-      {passIsVisible
-        ? <Password>{password}</Password>
-        : (
-          <LoginData>
-            <Title>{title}</Title>
-            <Email>{email}</Email>
-          </LoginData>
-        )
-      }
+      {passIsVisible ? (
+        <Password>{password}</Password>
+      ) : (
+        <LoginData>
+          <Title>{title}</Title>
+          <Email>{email}</Email>
+        </LoginData>
+      )}
 
-      <ShowPasswordButton
-        onPress={handleTogglePassIsVisible}
-      >
-        <Icon name={passIsVisible ? "eye-off" : "eye"} />
+      <ShowPasswordButton onPress={handleTogglePassIsVisible}>
+        <Icon name={passIsVisible ? 'eye-off' : 'eye'} />
       </ShowPasswordButton>
     </Container>
-  );
+  )
 }
