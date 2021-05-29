@@ -1,5 +1,5 @@
-/* eslint-disable jest/expect-expect */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable jest/expect-expect */
 import React from 'react'
 
 import { fireEvent, render, waitFor } from '@testing-library/react-native'
@@ -11,6 +11,7 @@ describe('RegisterLoginData', () => {
   it('should be able to save login data on async storage', async () => {
     const spySetItem = jest
       .spyOn(AsyncStorage, 'setItem')
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       .mockImplementationOnce((key: string, data: any) => Promise.resolve())
 
     const spyGetItem = jest.spyOn(AsyncStorage, 'getItem').mockReturnValueOnce(

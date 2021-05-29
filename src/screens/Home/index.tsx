@@ -1,40 +1,46 @@
 import React, { useState, useCallback, useEffect } from 'react'
 
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useFocusEffect } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { SearchBar } from '../../components/SearchBar'
 import { LoginDataItem } from '../../components/LoginDataItem'
 import { Container, LoginList, EmptyListContainer, EmptyListMessage } from './styles'
-
-interface LoginDataProps {
-  id: string
-  title: string
-  email: string
-  password: string
-}
-
-type LoginListDataProps = LoginDataProps[]
+import { LoginDataProps } from './types'
 
 export function Home() {
-  // const [searchListData, setSearchListData] = useState<LoginListDataProps>([]);
-  // const [data, setData] = useState<LoginListDataProps>([]);
+  const [searchListData, setSearchListData] = useState<LoginDataProps[]>([])
+  const [data, setData] = useState<LoginDataProps[]>([])
 
-  async function loadData() {
-    // Get asyncStorage data, use setSearchListData and setData
-  }
+  const loadData = useCallback(async () => {
+    try {
+      const storageKey = '@passmanager'
+      const result = await AsyncStorage.getItem(`${storageKey}:logins`)
+      const logins = result ? (JSON.parse(result) as LoginDataProps[]) : []
+      setSearchListData(logins)
+      setData(logins)
+    } catch (error) {
+      console.log(error)
+    }
+  }, [])
+
   useEffect(() => {
     loadData()
-  }, [])
+  }, [loadData])
 
   useFocusEffect(
     useCallback(() => {
       loadData()
-    }, [])
+    }, [loadData])
   )
 
   function handleFilterLoginData(search: string) {
-    // Filter results inside data, save with setSearchListData
+    if (search !== '') {
+      const dataFiltered = data.filter(item => item.title.includes(search))
+      setSearchListData(dataFiltered)
+    } else {
+      setSearchListData(data)
+    }
   }
 
   return (

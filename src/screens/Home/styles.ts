@@ -3,12 +3,7 @@ import { FlatList } from 'react-native'
 import styled from 'styled-components/native'
 import { RFValue } from 'react-native-responsive-fontsize'
 
-interface LoginListDataProps {
-  id: string
-  title: string
-  email: string
-  password: string
-}
+import { LoginDataProps } from './types'
 
 export const Container = styled.View`
   flex: 1;
@@ -16,9 +11,7 @@ export const Container = styled.View`
   padding: 0 27px;
 `
 
-export const LoginList = styled(
-  FlatList as new () => FlatList<LoginListDataProps>
-).attrs({
+export const LoginList = styled(FlatList as new () => FlatList<LoginDataProps>).attrs({
   showsVerticalScrollIndicator: false,
 })`
   margin-top: ${RFValue(38)}px;

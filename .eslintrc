@@ -16,8 +16,8 @@
     "jsx-a11y/media-has-caption": "off",
     "radar/no-duplicate-string": "off",
     "no-console": "off",
-    "global-require": "off",
-    "@typescript-eslint/no-unused-vars": "off"
+    "global-require": "off"
+    // "@typescript-eslint/no-unused-vars": "off"
     // "consistent-return": "off"
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { render, fireEvent, waitFor } from '@testing-library/react-native'
+import { render } from '@testing-library/react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { Home } from '../../screens/Home'
