@@ -12,7 +12,7 @@ export function Home() {
   const [searchListData, setSearchListData] = useState<LoginDataProps[]>([])
   const [data, setData] = useState<LoginDataProps[]>([])
 
-  const loadData = useCallback(async () => {
+  const loadData = async () => {
     try {
       const storageKey = '@passmanager'
       const result = await AsyncStorage.getItem(`${storageKey}:logins`)
@@ -22,16 +22,16 @@ export function Home() {
     } catch (error) {
       console.log(error)
     }
-  }, [])
+  }
 
   useEffect(() => {
     loadData()
-  }, [loadData])
+  }, [])
 
   useFocusEffect(
     useCallback(() => {
       loadData()
-    }, [loadData])
+    }, [])
   )
 
   function handleFilterLoginData(search: string) {
